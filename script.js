@@ -48,7 +48,7 @@ function initThree() {
         const scene = new THREE.Scene();
         const container = canvas.parentElement;
 
-        const camera = new THREE.PerspectiveCamera(10, container.clientWidth / container.clientHeight, 0.1, 1000);
+        const camera = new THREE.PerspectiveCamera(20, container.clientWidth / container.clientHeight, 0.1, 1000);
         camera.position.z = 5;
 
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
@@ -77,7 +77,7 @@ function initThree() {
                 (gltf) => {
                     const model = gltf.scene;
 
-                    model.scale.set(5, 5, 5);
+                    model.scale.set(2, 2, 2);
                     scene.add(model);
                     sceneData.mesh = model;
                 },
