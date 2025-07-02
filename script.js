@@ -35,7 +35,12 @@ function handleWheel(event) {
     const newIndex = currentIndex + direction;
     if (newIndex >= 0 && newIndex < numSections) {
         goToSection(newIndex);
+    }else if(newIndex < 0){
+        goToSection(numSections-1);
+    }else if(newIndex >= numSections){
+        goToSection(0);
     }
+
     setTimeout(() => { isScrolling = false; }, 100);
 }
 
@@ -115,6 +120,7 @@ function onWindowResize() {
 }
 
 window.onload = function() {
+    // requestPrices()
     mainContainer.style.width = `${numSections * 100}vw`;
     createNavDots();
     updateNavDots();
@@ -125,3 +131,22 @@ window.onload = function() {
     window.addEventListener('wheel', handleWheel);
     window.addEventListener('resize', onWindowResize);
 };
+
+document.addEventListener("DOMContentLoaded", (event) => {
+    document.getElementById("goback").addEventListener("click", function(){
+        goToSection(0)
+    }, false);
+})
+
+// function requestPrices(){
+//     const sheetId = '1mz7-tXjp1VeeVq_q7p3EDfAHnzD2FqN8vxxVteh97-0';
+//     const sheetName = 'Gestion';
+
+//     fetch(`https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${sheetName}`)
+//     .then(res => res.text())
+//     .then(text => {
+//         const json = JSON.parse(text.substring(47).slice(0, -2));
+//         const cellule = json.table.rows[0].c[0].v; // Par exemple, cellule A1
+//         console.log(cellule);
+//     });
+// }
