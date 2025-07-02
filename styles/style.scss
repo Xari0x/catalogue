@@ -60,7 +60,7 @@ main {
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.438);
         z-index: 2;
-        backdrop-filter: blur(2px);;
+        // backdrop-filter: blur(2px);
     }
 }
 
@@ -189,7 +189,8 @@ main {
 }
 
 .canvas-container {
-    width: 100%;
+    width: 90vw;
+    padding-left: 10vw;
     height: 65vh;
 }
 .weapon-canvas {
