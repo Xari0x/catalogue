@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogue</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    
+    <link rel="stylesheet" href="./styles/style.css">
+    
+</head>
+    <body>
+        <main id="main-container">
+            <!-- PISTOL -->
+            <section class="weapon-section" style="background-image: url('./Images/prev_heavypistol.jpg');">
+                <div class="dark-background" />
+                <div class="content-container">
+                    <div class="title-container">
+                        <img src="./Images/pistol.png" alt="Icône">
+                        <h1 class="text-shadow">Pistolet</h1>
+                    </div>
+                    <div class="canvas-container">
+                        <canvas class="weapon-canvas" data-src="./3D/pistol.glb"></canvas>
+                    </div>
+                    <div class="desc-container">
+                        <div class="stats-container">
+                            <div class="stat"><p class="stats-title">Taille du chargeur</p><p class="stats-value">12</p></div>
+                            <div class="stat"><p class="stats-title">Portée</p><p class="stats-value">40 - 120m</p></div>
+                            <div class="stat"><p class="stats-title">Type de munitions</p><p class="stats-value">9mm</p></div>
+                            <div class="stat"><p class="stats-title">Cadence (CPM)</p><p class="stats-value">~190</p></div>
+                            <div class="stat"><p class="stats-title">Dégâts</p><div class="pickbar"><div class="green"></div><div class="gray"></div><div class="gray"></div></div><p class="stats-value">Faible</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="price">10,000$</div>
+            </section>
+            <!-- HEAVY PISTOL -->
+            <section class="weapon-section" style="background-image: url('./Images/prev_heavypistol.jpg');">
+                <div class="dark-background" />
+                <div class="content-container">
+                    <div class="title-container">
+                        <img src="./Images/heavypistol.png" alt="Icône">
+                        <h1 class="text-shadow">Pistolet lourd</h1>
+                    </div>
+                    <div class="canvas-container">
+                        <canvas class="weapon-canvas" data-src="./3D/heavypistol.glb"></canvas>
+                    </div>
+                    <div class="desc-container">
+                        <div class="stats-container">
+                            <div class="stat"><p class="stats-title">Taille du chargeur</p><p class="stats-value">18</p></div>
+                            <div class="stat"><p class="stats-title">Portée</p><p class="stats-value">30 - 120m</p></div>
+                            <div class="stat"><p class="stats-title">Type de munitions</p><p class="stats-value">9mm</p></div>
+                            <div class="stat"><p class="stats-title">Cadence (CPM)</p><p class="stats-value">~150</p></div>
+                            <div class="stat"><p class="stats-title">Dégâts</p><div class="pickbar"><div class="yellow"></div><div class="yellow"></div><div class="gray"></div></div><p class="stats-value">Moyen</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="price">10,000$</div>
+            </section>
+            <!-- DB -->
+            <section class="weapon-section" style="background-image: url('./Images/prev_fap.jpg');">
+                <div class="dark-background" />
+                <div class="content-container">
+                    <div class="title-container">
+                        <img src="./Images/db.png" alt="Icône">
+                        <h1 class="text-shadow">Double barrel</h1>
+                    </div>
+                    <div class="canvas-container">
+                        <canvas class="weapon-canvas" data-src="./3D/db.glb"></canvas>
+                    </div>
+                    <div class="desc-container">
+                        <div class="stats-container">
+                            <div class="stat"><p class="stats-title">Taille du chargeur</p><p class="stats-value">2</p></div>
+                            <div class="stat"><p class="stats-title">Portée</p><p class="stats-value">5 - 30m</p></div>
+                            <div class="stat"><p class="stats-title">Type de munitions</p><p class="stats-value">Cal. 12</p></div>
+                            <div class="stat"><p class="stats-title">Cadence (CPM)</p><p class="stats-value">~55</p></div>
+                            <div class="stat"><p class="stats-title">Dégâts</p><div class="pickbar"><div class="red"></div><div class="red"></div><div class="red"></div></div><p class="stats-value">Élevé</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="price">55,000$</div>
+            </section>
+            <!-- FAP -->
+            <section class="weapon-section" style="background-image: url('./Images/prev_fap.jpg');">
+                <div class="dark-background" />
+                <div class="content-container">
+                    <div class="title-container">
+                        <img src="./Images/sawnoff.png" alt="Icône">
+                        <h1 class="text-shadow">Canon scié</h1>
+                    </div>
+                    <div class="canvas-container">
+                        <canvas class="weapon-canvas" data-src="./3D/fap.glb"></canvas>
+                    </div>
+                    <div class="desc-container">
+                        <div class="stats-container">
+                            <div class="stat"><p class="stats-title">Taille du chargeur</p><p class="stats-value">8</p></div>
+                            <div class="stat"><p class="stats-title">Portée</p><p class="stats-value">10 - 40m</p></div>
+                            <div class="stat"><p class="stats-title">Type de munitions</p><p class="stats-value">Cal. 12</p></div>
+                            <div class="stat"><p class="stats-title">Cadence (CPM)</p><p class="stats-value">~75</p></div>
+                            <div class="stat"><p class="stats-title">Dégâts</p><div class="pickbar"><div class="red"></div><div class="red"></div><div class="red"></div></div><p class="stats-value">Élevé</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="price">60,000$</div>
+            </section>
+            <!-- UZI -->
+            <section class="weapon-section" style="background-image: url('./Images/prev_uzi.jpg');">
+                <div class="dark-background" />
+                <div class="content-container">
+                    <div class="title-container">
+                        <img src="./Images/uzi.png" alt="Icône">
+                        <h1 class="text-shadow">UZI</h1>
+                    </div>
+                    <div class="canvas-container">
+                        <canvas class="weapon-canvas" data-src="./3D/uzi.glb"></canvas>
+                    </div>
+                    <div class="desc-container">
+                        <div class="stats-container">
+                            <div class="stat"><p class="stats-title">Taille du chargeur</p><p class="stats-value">16</p></div>
+                            <div class="stat"><p class="stats-title">Portée</p><p class="stats-value">40 - 120m</p></div>
+                            <div class="stat"><p class="stats-title">Type de munitions</p><p class="stats-value">9mm</p></div>
+                            <div class="stat"><p class="stats-title">Cadence (CPM)</p><p class="stats-value">~510</p></div>
+                            <div class="stat"><p class="stats-title">Dégâts</p><div class="pickbar"><div class="yellow"></div><div class="yellow"></div><div class="gray"></div></div><p class="stats-value">Moyen</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="price">160,000$</div>
+            </section>
+            <!-- SKP -->
+            <section class="weapon-section" style="background-image: url('./Images/prev_uzi.jpg');">
+                <div class="dark-background" />
+                <div class="content-container">
+                    <div class="title-container">
+                        <img src="./Images/skp.png" alt="Icône">
+                        <h1 class="text-shadow">Skorpion</h1>
+                    </div>
+                    <div class="canvas-container">
+                        <canvas class="weapon-canvas" data-src="./3D/skp.glb"></canvas>
+                    </div>
+                    <div class="desc-container">
+                        <div class="stats-container">
+                            <div class="stat"><p class="stats-title">Taille du chargeur</p><p class="stats-value">20</p></div>
+                            <div class="stat"><p class="stats-title">Portée</p><p class="stats-value">40 - 120m</p></div>
+                            <div class="stat"><p class="stats-title">Type de munitions</p><p class="stats-value">9mm</p></div>
+                            <div class="stat"><p class="stats-title">Cadence (CPM)</p><p class="stats-value">~680</p></div>
+                            <div class="stat"><p class="stats-title">Dégâts</p><div class="pickbar"><div class="yellow"></div><div class="yellow"></div><div class="gray"></div></div><p class="stats-value">Moyen</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="price">160,000$</div>
+            </section>
+            <!-- AK -->
+            <section class="weapon-section" style="background-image: url('./Images/prev_ak.jpg');">
+                <div class="dark-background" />
+                <div class="content-container">
+                    <div class="title-container">
+                        <img src="./Images/assaultrifle.png" alt="Icône">
+                        <h1 class="text-shadow">AK47</h1>
+                    </div>
+                    <div class="canvas-container">
+                        <canvas class="weapon-canvas" data-src="./3D/assaultrifle.glb"></canvas>
+                    </div>
+                    <div class="desc-container">
+                        <div class="stats-container">
+                            <div class="stat"><p class="stats-title">Taille du chargeur</p><p class="stats-value">30</p></div>
+                            <div class="stat"><p class="stats-title">Portée</p><p class="stats-value">47.5 - 120m</p></div>
+                            <div class="stat"><p class="stats-title">Type de munitions</p><p class="stats-value">7.62</p></div>
+                            <div class="stat"><p class="stats-title">Cadence (CPM)</p><p class="stats-value">~360</p></div>
+                            <div class="stat"><p class="stats-title">Dégâts</p><div class="pickbar"><div class="red"></div><div class="red"></div><div class="red"></div></div><p class="stats-value">Élevé</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="price">500,000$</div>
+            </section>
+            <!-- GUZ -->
+            <section class="weapon-section" style="background-image: url('./Images/prev_ak.jpg');">
+                <div class="dark-background" />
+                <div class="content-container">
+                    <div class="title-container">
+                        <img src="./Images/guz.png" alt="Icône">
+                        <h1 class="text-shadow">Gusenberg</h1>
+                    </div>
+                    <div class="canvas-container">
+                        <canvas class="weapon-canvas" data-src="./3D/guz.glb"></canvas>
+                    </div>
+                    <div class="desc-container">
+                        <div class="stats-container">
+                            <div class="stat"><p class="stats-title">Taille du chargeur</p><p class="stats-value">30</p></div>
+                            <div class="stat"><p class="stats-title">Portée</p><p class="stats-value">47.5 - 120m</p></div>
+                            <div class="stat"><p class="stats-title">Type de munitions</p><p class="stats-value">45 ACP</p></div>
+                            <div class="stat"><p class="stats-title">Cadence (CPM)</p><p class="stats-value">~460</p></div>
+                            <div class="stat"><p class="stats-title">Dégâts</p><div class="pickbar"><div class="red"></div><div class="red"></div><div class="red"></div></div><p class="stats-value">Élevé</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="price">400,000$</div>
+            </section>
+        </main>
+
+        <div id="nav-dots-container" class="nav-dots"></div>
+    </body>
+    <script src="./script.js"></script>
+</html>
