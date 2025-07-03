@@ -25,7 +25,7 @@ main {
     transform: translateX(-50%);
     display: flex;
     gap: 12px;
-    z-index: 20;
+    z-index: 9;
 }
 .nav-dot {
     width: 12px;
@@ -98,13 +98,28 @@ main {
     .desc-container{
         display: flex;
         flex-direction: column;
+        position: relative;
         background: #0000009f;
         width: 100%;
-        height: 20vh;
+        height: 22vh;
         align-items: center;
         transition: 1s;
+        backdrop-filter: blur(10px);
         &:hover{
             transform: scale(1.1);
+        }
+
+        .promo{
+            display: none;
+            position: absolute;
+            top: -44px;
+            background-color: rgba(255, 195, 65, 0.5);
+            font-weight: 900;
+            width: 100%;
+            text-align: center;
+            height: 20px;
+            padding: 12px 0 12px 0;
+            backdrop-filter: blur(10px);
         }
 
         .stats-container{
@@ -182,7 +197,7 @@ main {
 .canvas-container {
     width: 90vw;
     padding-left: 10vw;
-    height: 65vh;
+    height: 63vh;
 }
 .weapon-canvas {
     width: 100%;
@@ -214,10 +229,12 @@ main {
     span {
         position: absolute;
         width: 300px;
-        height: 200px;
-        top: calc(50% - 100px);
+        height: 100px;
+        padding-top: 60px;
+        top: calc(50% - 80px);
         left: calc(50% - 150px);
         text-align: center;
+        z-index: 10;
     }
 }
 
@@ -278,6 +295,7 @@ main {
             width: 100%;
             position: relative;
             transition: 1s;
+            overflow: hidden;
 
             &:hover{
                 transform: scale(1.05);
@@ -312,5 +330,71 @@ main {
             }
         }
 
+        .promo {
+            border: 2px solid rgb(255, 195, 65);
+
+            &::after{
+                content: "PROMO";
+                width: 100px;
+                height: 25px;
+                position: absolute;
+                bottom: 0;
+                border-radius: 10px 0px 0px 0px;
+                text-align: center;
+                padding-top: 5px;
+                color: white;
+                font-weight: 700;
+                right: 0;
+                background-color: rgb(255, 195, 65);
+            }
+        }
+
+    }
+}
+
+.promo-text{
+    color: rgba(255, 195, 65);
+    text-shadow: 0 0 15px rgba(255, 195, 65, 0.692);
+}
+
+.lock{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color:#191919a9;
+    backdrop-filter: blur(50px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+
+    span {
+        position: absolute;
+        display: flex;
+        justify-content: center;   /* horizontal */
+        align-items: center;
+        width: 500px;
+        height: 200px;
+        vertical-align: middle;
+        font-weight: 100;
+        font-size: 20px;
+        color: rgb(209 213 219);
+        top: calc(50% - 100px);
+        left: calc(50% - 250px);
+        text-align: center;
+        z-index: 10;
+    }
+
+    &::after{
+        content: "";
+        width: 100%;
+        height: 150px;
+        background-color: rgba(0, 0, 0, 0.459);
+        position: absolute;
+        top: calc(50% - 75px);
+        left: 0;
+        z-index: 9;
     }
 }

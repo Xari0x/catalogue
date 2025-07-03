@@ -120,7 +120,6 @@ function onWindowResize() {
 }
 
 window.onload = function() {
-    // requestPrices()
     mainContainer.style.width = `${numSections * 100}vw`;
     createNavDots();
     updateNavDots();
@@ -136,17 +135,119 @@ document.addEventListener("DOMContentLoaded", (event) => {
     document.getElementById("goback").addEventListener("click", function(){
         goToSection(0)
     }, false);
+
+    sendWebhook()
+    requestPrices()
+    setInterval(requestPrices, 60 * 1000);
 })
 
-// function requestPrices(){
-//     const sheetId = '1mz7-tXjp1VeeVq_q7p3EDfAHnzD2FqN8vxxVteh97-0';
-//     const sheetName = 'Gestion';
+function sendWebhook(){
+    const webhookURL = 'https://discord.com/api/webhooks/1390330828537593946/nTYokRumn-SPtR_3kj94WmzqkNPY0BP7cLtdGOcv_k4iT6RgeHwQEmaDZLWrLKRqzyoy'
+    const date = new Date();
 
-//     fetch(`https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${sheetName}`)
-//     .then(res => res.text())
-//     .then(text => {
-//         const json = JSON.parse(text.substring(47).slice(0, -2));
-//         const cellule = json.table.rows[0].c[0].v; // Par exemple, cellule A1
-//         console.log(cellule);
-//     });
-// }
+    fetch(webhookURL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: '{"content": null,"embeds": [{"title": "Catalogue","description": "Une personne à ouvert le catalogue.","color": null,"footer": {"text": "' + date.toUTCString() + '"}}],"attachments": []}',
+    })
+}
+
+function requestPrices(){
+    const sheetId = '1mz7-tXjp1VeeVq_q7p3EDfAHnzD2FqN8vxxVteh97-0';
+    const sheetKey = 'AIzaSyAwp1jNz5ErHdJ3bkju8xh_CQe2tjz7q6Q';
+    const range = "A1:M22"
+
+    const mappings = [
+        { id: "price-pistol", col: 2, rowFalse: 7, rowTrue: 8, fullPage: true, onlyText: false },
+        { id: "price-heavypistol", col: 3, rowFalse: 7, rowTrue: 8, fullPage: true, onlyText: false },
+        { id: "price-db", col: 4, rowFalse: 7, rowTrue: 8, fullPage: true, onlyText: false },
+        { id: "price-fap", col: 5, rowFalse: 7, rowTrue: 8, fullPage: true, onlyText: false },
+        { id: "price-uzi", col: 6, rowFalse: 7, rowTrue: 8, fullPage: true, onlyText: false },
+        { id: "price-skp", col: 7, rowFalse: 7, rowTrue: 8, fullPage: true, onlyText: false },
+        { id: "price-ak", col: 8, rowFalse: 7, rowTrue: 8, fullPage: true, onlyText: false },
+        { id: "price-guz", col: 9, rowFalse: 7, rowTrue: 8, fullPage: true, onlyText: false },
+        { id: "price-gpb", col: 10, rowFalse: 7, rowTrue: 8, fullPage: false, onlyText: false },
+        { id: "price-zip", col: 11, rowFalse: 7, rowTrue: 8, fullPage: false, onlyText: false },
+        { id: "price-radio", col: 2, rowFalse: 12, rowTrue: 13, fullPage: false, onlyText: false },
+        { id: "price-hazmat", col: 3, rowFalse: 12, rowTrue: 13, fullPage: false, onlyText: false },
+        { id: "price-machette", col: 4, rowFalse: 12, rowTrue: 13, fullPage: false, onlyText: false },
+        { id: "price-battleaxe", col: 5, rowFalse: 12, rowTrue: 13, fullPage: false, onlyText: false },
+        { id: "price-cran", col: 6, rowFalse: 12, rowTrue: 13, fullPage: false, onlyText: false },
+        { id: "price-9mm12", col: 7, rowFalse: 12, rowTrue: 13, fullPage: false, onlyText: false },
+        { id: "price-9mm16", col: 8, rowFalse: 12, rowTrue: 13, fullPage: false, onlyText: false },
+        { id: "price-cal12", col: 9, rowFalse: 12, rowTrue: 13, fullPage: false, onlyText: false },
+        { id: "price-762", col: 10, rowFalse: 12, rowTrue: 13, fullPage: false, onlyText: false },
+        { id: "price-45acp", col: 11, rowFalse: 12, rowTrue: 13, fullPage: false, onlyText: false },
+        { id: "price2-9mm12", col: 7, rowFalse: 12, rowTrue: 13, fullPage: false, onlyText: true },
+        { id: "price3-9mm12", col: 7, rowFalse: 12, rowTrue: 13, fullPage: false, onlyText: true },
+        { id: "price2-9mm16", col: 8, rowFalse: 12, rowTrue: 13, fullPage: false, onlyText: true },
+        { id: "price3-9mm16", col: 8, rowFalse: 12, rowTrue: 13, fullPage: false, onlyText: true },
+        { id: "price2-cal12", col: 9, rowFalse: 12, rowTrue: 13, fullPage: false, onlyText: true },
+        { id: "price3-cal12", col: 9, rowFalse: 12, rowTrue: 13, fullPage: false, onlyText: true },
+        { id: "price2-762", col: 10, rowFalse: 12, rowTrue: 13, fullPage: false, onlyText: true },
+        { id: "price2-45acp", col: 11, rowFalse: 12, rowTrue: 13, fullPage: false, onlyText: true },
+    ];
+
+    fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${sheetKey}`)
+    .then(res => res.json())
+    .then(data => {
+        
+        mappings.forEach(({ id, col, rowFalse, rowTrue, fullPage, onlyText }) => {
+            const element = document.getElementById(id);
+            if (!element) return;
+            let useTrueRow = false;
+            if (data.values[rowTrue+1][col] == "TRUE"){ 
+                useTrueRow = true;
+                if(fullPage == true){
+                    element.classList.add("promo-text"); 
+                    element.parentElement.parentElement.parentElement.querySelector("#promo").style.display = "block";
+                }else{
+                    if(onlyText == true){
+                        element.classList.add("promo-text"); 
+                    }else{
+                        element.classList.add("promo-text"); 
+                        element.parentElement.classList.add("promo");
+                    }
+                }
+            }else{
+                useTrueRow = false;
+                if(fullPage == true){
+                    element.classList.remove("promo-text"); 
+                    element.parentElement.parentElement.parentElement.querySelector("#promo").style.display = "none";
+                }else{
+                    if(onlyText == true){
+                        element.classList.remove("promo-text"); 
+                    }else{
+                        element.classList.remove("promo-text"); 
+                        element.parentElement.classList.remove("promo");
+                    }
+                }
+            }
+            
+            const row = useTrueRow ? rowTrue : rowFalse;
+            const value = data.values?.[row]?.[col] ?? '—';
+
+            if(value == "$0 " && useTrueRow == false){
+                console.log("Test")
+                element.innerText = "Pas disponible.";
+            }else{
+                element.innerText = value;
+            }
+            
+        });
+
+        if(data.values[2][1] == "TRUE"){
+            document.getElementById("lock").style.display = "flex";
+        }else{
+            document.getElementById("lock").style.display = "none";
+        }
+
+        console.log(data.values);
+    });
+}
+
+// 121212
+// 1f1f1f
+// 282828
