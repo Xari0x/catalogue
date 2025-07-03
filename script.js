@@ -230,7 +230,6 @@ function requestPrices(){
             const value = data.values?.[row]?.[col] ?? '—';
 
             if(value == "$0 " && useTrueRow == false){
-                console.log("Test")
                 element.innerText = "Pas disponible.";
             }else{
                 element.innerText = value;
@@ -244,7 +243,6 @@ function requestPrices(){
             document.getElementById("lock").style.display = "none";
         }
 
-        console.log(data.values);
     });
 }
 
