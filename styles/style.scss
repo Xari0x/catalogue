@@ -26,6 +26,15 @@ main {
     display: flex;
     gap: 12px;
     z-index: 9;
+
+    @media only screen and (min-width: 2500px) {
+        gap: 20px;
+    }
+
+    @media only screen and (min-width: 3800px) {
+        gap: 30px;
+        bottom: 50px;
+    }
 }
 .nav-dot {
     width: 12px;
@@ -34,12 +43,33 @@ main {
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
+
+    @media only screen and (min-width: 2500px) {
+        width: 20px;
+        height: 20px;
+        border-radius: 90px;
+    }
+
+    @media only screen and (min-width: 3800px) {
+        width: 30px;
+        height: 30px;
+        border-radius: 90px;
+    }
 }
 .nav-dot.active {
     background-color: white;
     width: 24px;
     border-radius: 10px;
     transform: scale(1.2);
+
+    @media only screen and (min-width: 2500px) {
+        width: 40px;
+        border-radius: 50px;
+    }
+
+    @media only screen and (min-width: 3800px) {
+        width: 60px;
+    }
 }
 
 .weapon-section {
@@ -93,6 +123,20 @@ main {
             height: 50px;
             margin-top: 60px;
         }
+
+        @media only screen and (min-width: 2500px) {
+            font-size: 30px;
+            img{
+                height: 100px;
+            }
+        }
+
+        @media only screen and (min-width: 3800px) {
+            font-size: 40px;
+            img{
+                height: 130px;
+            }
+        }
     }
 
     .desc-container{
@@ -120,6 +164,20 @@ main {
             height: 20px;
             padding: 12px 0 12px 0;
             backdrop-filter: blur(10px);
+
+            @media only screen and (min-width: 2500px) {
+                top: -54px;
+                height: 30px;
+                padding: 12px 0 12px 0;
+                font-size: 25px;
+            }
+
+            @media only screen and (min-width: 3800px) {
+                top: -74px;
+                height: 50px;
+                padding: 12px 0 12px 0;
+                font-size: 35px;
+            }
         }
 
         .stats-container{
@@ -150,6 +208,40 @@ main {
                     img{
                         height: 40px;
                         margin-right: 5px;
+                    }
+                }
+            }
+
+            @media only screen and (min-width: 2500px) {
+                .stat {
+                    .stats-title{
+                        font-size: 30px;
+                    }
+
+                    .stats-value{
+                        font-size: 50px;
+
+                        img{
+                            height: 70px;
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+
+            @media only screen and (min-width: 3800px) {
+                .stat {
+                    .stats-title{
+                        font-size: 50px;
+                    }
+
+                    .stats-value{
+                        font-size: 70px;
+
+                        img{
+                            height: 100px;
+                            margin-right: 5px;
+                        }
                     }
                 }
             }
@@ -186,11 +278,66 @@ main {
     }
 
     .gray{
-        
         width: 60px;
         border-radius: 10px;
         height: 10px;
         background-color: rgba(61, 61, 61, 0.521);
+    }
+
+    @media only screen and (min-width: 2500px) {
+        width: 390px;
+        margin-bottom: 20px;
+        gap: 10px;
+
+        .green{
+            width: 120px;
+            height: 20px;
+        }
+
+        .yellow{
+            width: 120px;
+            height: 20px;
+        }
+
+        .red{
+            width: 120px;
+            height: 20px;
+        }
+
+        .gray{
+            width: 120px;
+            height: 20px;
+        }
+    }
+
+    @media only screen and (min-width: 3800px) {
+        width: 690px;
+        margin-bottom: 40px;
+        gap: 20px;
+
+        .green{
+            width: 220px;
+            height: 40px;
+            border-radius: 50px;
+        }
+
+        .yellow{
+            width: 220px;
+            height: 40px;
+            border-radius: 50px;
+        }
+
+        .red{
+            width: 220px;
+            height: 40px;
+            border-radius: 50px;
+        }
+
+        .gray{
+            width: 220px;
+            height: 40px;
+            border-radius: 50px;
+        }
     }
 }
 
@@ -310,6 +457,7 @@ main {
                 top: calc(50% - 35px);
             }
 
+
             .name{
                 position: absolute;
                 font-weight: 800;
@@ -327,6 +475,52 @@ main {
                 text-transform: uppercase;
                 left: 110px;
                 top: 60px;
+            }
+
+            @media only screen and (min-width: 2500px) {
+                img{
+                    height: 120px;
+                    width: 120px;
+                    left: 30px;
+                    top: calc(50% - 60px);
+                }
+
+                .name{
+                    font-size: 24px;
+                    left: 160px;
+                    top: 50px;
+                }
+
+                .price{
+                    font-size: 30px;
+                    left: 160px;
+                    top: 90px;
+                }
+                
+                border-radius: 20px;
+            }
+
+            @media only screen and (min-width: 3800px) {
+                img{
+                    height: 190px;
+                    width: 190px;
+                    left: 50px;
+                    top: calc(50% - 95px);
+                }
+
+                .name{
+                    font-size: 40px;
+                    left: 270px;
+                    top: 90px;
+                }
+
+                .price{
+                    font-size: 50px;
+                    left: 270px;
+                    top: 160px;
+                }
+
+                border-radius: 30px;
             }
         }
 
@@ -346,6 +540,15 @@ main {
                 font-weight: 700;
                 right: 0;
                 background-color: rgb(255, 195, 65);
+            }
+
+            @media only screen and (min-width: 3800px) {
+                &::after{
+                    content: "PROMO";
+                    width: 200px;
+                    height: 50px;
+                    font-size: 35px;
+                }
             }
         }
 

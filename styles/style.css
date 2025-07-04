@@ -26,6 +26,17 @@ main {
   gap: 12px;
   z-index: 9;
 }
+@media only screen and (min-width: 2500px) {
+  .nav-dots {
+    gap: 20px;
+  }
+}
+@media only screen and (min-width: 3800px) {
+  .nav-dots {
+    gap: 30px;
+    bottom: 50px;
+  }
+}
 
 .nav-dot {
   width: 12px;
@@ -35,12 +46,37 @@ main {
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
+@media only screen and (min-width: 2500px) {
+  .nav-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 90px;
+  }
+}
+@media only screen and (min-width: 3800px) {
+  .nav-dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 90px;
+  }
+}
 
 .nav-dot.active {
   background-color: white;
   width: 24px;
   border-radius: 10px;
   transform: scale(1.2);
+}
+@media only screen and (min-width: 2500px) {
+  .nav-dot.active {
+    width: 40px;
+    border-radius: 50px;
+  }
+}
+@media only screen and (min-width: 3800px) {
+  .nav-dot.active {
+    width: 60px;
+  }
 }
 
 .weapon-section {
@@ -91,6 +127,22 @@ main {
   height: 50px;
   margin-top: 60px;
 }
+@media only screen and (min-width: 2500px) {
+  .content-container .title-container {
+    font-size: 30px;
+  }
+  .content-container .title-container img {
+    height: 100px;
+  }
+}
+@media only screen and (min-width: 3800px) {
+  .content-container .title-container {
+    font-size: 40px;
+  }
+  .content-container .title-container img {
+    height: 130px;
+  }
+}
 .content-container .desc-container {
   display: flex;
   flex-direction: column;
@@ -116,6 +168,22 @@ main {
   height: 20px;
   padding: 12px 0 12px 0;
   backdrop-filter: blur(10px);
+}
+@media only screen and (min-width: 2500px) {
+  .content-container .desc-container .promo {
+    top: -54px;
+    height: 30px;
+    padding: 12px 0 12px 0;
+    font-size: 25px;
+  }
+}
+@media only screen and (min-width: 3800px) {
+  .content-container .desc-container .promo {
+    top: -74px;
+    height: 50px;
+    padding: 12px 0 12px 0;
+    font-size: 35px;
+  }
 }
 .content-container .desc-container .stats-container {
   display: flex;
@@ -145,6 +213,30 @@ main {
 .content-container .desc-container .stats-container .stat .stats-value img {
   height: 40px;
   margin-right: 5px;
+}
+@media only screen and (min-width: 2500px) {
+  .content-container .desc-container .stats-container .stat .stats-title {
+    font-size: 30px;
+  }
+  .content-container .desc-container .stats-container .stat .stats-value {
+    font-size: 50px;
+  }
+  .content-container .desc-container .stats-container .stat .stats-value img {
+    height: 70px;
+    margin-right: 5px;
+  }
+}
+@media only screen and (min-width: 3800px) {
+  .content-container .desc-container .stats-container .stat .stats-title {
+    font-size: 50px;
+  }
+  .content-container .desc-container .stats-container .stat .stats-value {
+    font-size: 70px;
+  }
+  .content-container .desc-container .stats-container .stat .stats-value img {
+    height: 100px;
+    margin-right: 5px;
+  }
 }
 
 .pickbar {
@@ -177,6 +269,56 @@ main {
   border-radius: 10px;
   height: 10px;
   background-color: rgba(61, 61, 61, 0.521);
+}
+@media only screen and (min-width: 2500px) {
+  .pickbar {
+    width: 390px;
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+  .pickbar .green {
+    width: 120px;
+    height: 20px;
+  }
+  .pickbar .yellow {
+    width: 120px;
+    height: 20px;
+  }
+  .pickbar .red {
+    width: 120px;
+    height: 20px;
+  }
+  .pickbar .gray {
+    width: 120px;
+    height: 20px;
+  }
+}
+@media only screen and (min-width: 3800px) {
+  .pickbar {
+    width: 690px;
+    margin-bottom: 40px;
+    gap: 20px;
+  }
+  .pickbar .green {
+    width: 220px;
+    height: 40px;
+    border-radius: 50px;
+  }
+  .pickbar .yellow {
+    width: 220px;
+    height: 40px;
+    border-radius: 50px;
+  }
+  .pickbar .red {
+    width: 220px;
+    height: 40px;
+    border-radius: 50px;
+  }
+  .pickbar .gray {
+    width: 220px;
+    height: 40px;
+    border-radius: 50px;
+  }
 }
 
 .canvas-container {
@@ -306,6 +448,48 @@ main {
   left: 110px;
   top: 60px;
 }
+@media only screen and (min-width: 2500px) {
+  .end-section .others-container .others-elem {
+    border-radius: 20px;
+  }
+  .end-section .others-container .others-elem img {
+    height: 120px;
+    width: 120px;
+    left: 30px;
+    top: calc(50% - 60px);
+  }
+  .end-section .others-container .others-elem .name {
+    font-size: 24px;
+    left: 160px;
+    top: 50px;
+  }
+  .end-section .others-container .others-elem .price {
+    font-size: 30px;
+    left: 160px;
+    top: 90px;
+  }
+}
+@media only screen and (min-width: 3800px) {
+  .end-section .others-container .others-elem {
+    border-radius: 30px;
+  }
+  .end-section .others-container .others-elem img {
+    height: 190px;
+    width: 190px;
+    left: 50px;
+    top: calc(50% - 95px);
+  }
+  .end-section .others-container .others-elem .name {
+    font-size: 40px;
+    left: 270px;
+    top: 90px;
+  }
+  .end-section .others-container .others-elem .price {
+    font-size: 50px;
+    left: 270px;
+    top: 160px;
+  }
+}
 .end-section .others-container .promo {
   border: 2px solid rgb(255, 195, 65);
 }
@@ -322,6 +506,14 @@ main {
   font-weight: 700;
   right: 0;
   background-color: rgb(255, 195, 65);
+}
+@media only screen and (min-width: 3800px) {
+  .end-section .others-container .promo::after {
+    content: "PROMO";
+    width: 200px;
+    height: 50px;
+    font-size: 35px;
+  }
 }
 
 .promo-text {
