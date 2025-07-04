@@ -5,6 +5,8 @@ const numSections = sections.length;
 let currentIndex = 0;
 let isScrolling = false;
 
+const workerUrl = 'https://catalogue-api.jordan-toulain.workers.dev';
+
 function goToSection(index) {
     if (index < 0 || index >= numSections) return;
     currentIndex = index;
@@ -30,18 +32,14 @@ function createNavDots() {
 
 function handleWheel(event) {
     if (isScrolling) return;
+    if (Math.abs(event.deltaY) < 10) return;
     isScrolling = true;
     const direction = event.deltaY > 0 ? 1 : -1;
-    const newIndex = currentIndex + direction;
-    if (newIndex >= 0 && newIndex < numSections) {
-        goToSection(newIndex);
-    }else if(newIndex < 0){
-        goToSection(numSections-1);
-    }else if(newIndex >= numSections){
-        goToSection(0);
-    }
-
-    setTimeout(() => { isScrolling = false; }, 100);
+    const newIndex = (currentIndex + direction + numSections) % numSections;
+    goToSection(newIndex);
+    setTimeout(() => {
+        isScrolling = false;
+    }, 800);
 }
 
 const scenes = [];
@@ -102,13 +100,17 @@ function initThree() {
         
 function animate() {
     requestAnimationFrame(animate);
-    scenes.forEach(s => {
-        if (s.mesh) {
-            s.mesh.rotation.y += 0.005;
+
+    const activeScene = scenes[currentIndex];
+
+    if (activeScene) {
+        if (activeScene.mesh) {
+            activeScene.mesh.rotation.y += 0.005;
         }
-        s.controls.update();
-        s.renderer.render(s.scene, s.camera);
-    });
+
+        activeScene.controls.update();
+        activeScene.renderer.render(activeScene.scene, activeScene.camera);
+    }
 }
         
 function onWindowResize() {
@@ -119,7 +121,7 @@ function onWindowResize() {
     });
 }
 
-window.onload = function() {
+document.addEventListener("DOMContentLoaded", () => {
     mainContainer.style.width = `${numSections * 100}vw`;
     createNavDots();
     updateNavDots();
@@ -129,36 +131,19 @@ window.onload = function() {
 
     window.addEventListener('wheel', handleWheel);
     window.addEventListener('resize', onWindowResize);
-};
 
-document.addEventListener("DOMContentLoaded", (event) => {
-    document.getElementById("goback").addEventListener("click", function(){
-        goToSection(0)
-    }, false);
+    document.getElementById("goback").addEventListener("click", () => goToSection(0));
 
-    sendWebhook()
-    requestPrices()
+    sendWebhook();
+    requestPrices();
     setInterval(requestPrices, 60 * 1000);
-})
+});
 
 function sendWebhook(){
-    const webhookURL = 'https://discord.com/api/webhooks/1390330828537593946/nTYokRumn-SPtR_3kj94WmzqkNPY0BP7cLtdGOcv_k4iT6RgeHwQEmaDZLWrLKRqzyoy'
-    const date = new Date();
-
-    fetch(webhookURL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: '{"content": null,"embeds": [{"title": "Catalogue","description": "Une personne à ouvert le catalogue.","color": null,"footer": {"text": "' + date.toUTCString() + '"}}],"attachments": []}',
-    })
+    fetch(`${workerUrl}/notify`, { method: 'POST' });
 }
 
 function requestPrices(){
-    const sheetId = '1mz7-tXjp1VeeVq_q7p3EDfAHnzD2FqN8vxxVteh97-0';
-    const sheetKey = 'AIzaSyAwp1jNz5ErHdJ3bkju8xh_CQe2tjz7q6Q';
-    const range = "A1:M22"
-
     const mappings = [
         { id: "price-pistol", col: 2, rowFalse: 7, rowTrue: 8, fullPage: true, onlyText: false },
         { id: "price-heavypistol", col: 3, rowFalse: 7, rowTrue: 8, fullPage: true, onlyText: false },
@@ -190,7 +175,7 @@ function requestPrices(){
         { id: "price2-45acp", col: 11, rowFalse: 12, rowTrue: 13, fullPage: false, onlyText: true },
     ];
 
-    fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${sheetKey}`)
+    fetch(`${workerUrl}/prices`)
     .then(res => res.json())
     .then(data => {
         
@@ -202,7 +187,10 @@ function requestPrices(){
                 useTrueRow = true;
                 if(fullPage == true){
                     element.classList.add("promo-text"); 
-                    element.parentElement.parentElement.parentElement.querySelector("#promo").style.display = "block";
+                    const promoElement = element.closest('.weapon-section').querySelector('.promo');
+                    if (promoElement) {
+                        promoElement.style.display = "block";
+                    }
                 }else{
                     if(onlyText == true){
                         element.classList.add("promo-text"); 
@@ -215,7 +203,10 @@ function requestPrices(){
                 useTrueRow = false;
                 if(fullPage == true){
                     element.classList.remove("promo-text"); 
-                    element.parentElement.parentElement.parentElement.querySelector("#promo").style.display = "none";
+                    const promoElement = element.closest('.weapon-section').querySelector('.promo');
+                    if (promoElement) {
+                        promoElement.style.display = "none";
+                    }
                 }else{
                     if(onlyText == true){
                         element.classList.remove("promo-text"); 
